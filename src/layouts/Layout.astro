@@ -1,33 +1,44 @@
 ---
-
-
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Web magician, creative developer">
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>threegoeseasy - ⚛ 🎀 𝒸𝒶𝓇𝒹 𝓌𝑒𝒷 𝓅𝒶𝑔𝑒 🎀 ⚛</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Web magician, creative developer" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>threegoeseasy - ⚛ 🎀 𝒸𝒶𝓇𝒹 𝓌𝑒𝒷 𝓅𝒶𝑔𝑒 🎀 ⚛</title>
+  </head>
+  <body class="bg-orange-400">
+    <slot />
+  </body>
 </html>
 <style is:global>
-	 @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
-	html {
-		font-family: 'Courier New', Courier, monospace;
-		background-color: #F6F6F6;
-	}
-	body {
-		min-height: 100vh;
-		height: 100%;
-  width: 100%;
-	}
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @font-face {
+    font-family: "w95";
+    src: url("/w95fa.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  iframe {
+    aspect-ratio: 4/3;
+    width: 100%;
+  }
+
+  html {
+    font-family: "w95", system-ui, monospace;
+  }
+  body {
+    font-family: "w95", system-ui, monospace;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+  }
 </style>
