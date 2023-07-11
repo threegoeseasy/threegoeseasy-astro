@@ -20,5 +20,6 @@
     "stylelint-config-html": "^1.1.0",
     "tailwindcss": "^3.0.24"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "license": "MIT"
 }

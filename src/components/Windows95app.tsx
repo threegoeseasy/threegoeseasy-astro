@@ -9,19 +9,27 @@ interface Windows95AppProps {
 
 const Windows95App: FC<Windows95AppProps> = ({ title, icon, children }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isOpen, setOpen] = useState(true);
 
-  const toggleFullScreen = () => {
-    setIsFullScreen(!isFullScreen);
+  const minimizeFullScreen = () => {
+    setIsFullScreen(false);
+  };
+
+  const openFullScreen = () => {
+    setIsFullScreen(true);
   };
 
   const closeWindow = () => {
-    // Perform any necessary closing logic here
+    setOpen(false);
   };
 
   return (
     <article
+      id="win95"
       style={{
         boxShadow: "0px 0px 0 2px #f0f0f0",
+        overflow: "auto",
+        resize: "horizontal",
       }}
       className={classNames(
         "flex flex-col border-2 border-[#c3c3c3]",
@@ -39,12 +47,12 @@ const Windows95App: FC<Windows95AppProps> = ({ title, icon, children }) => {
           <img
             src="/minimize.jpg"
             className=" cursor-pointer"
-            // onClick={toggleFullScreen}
+            onClick={minimizeFullScreen}
           />
           <img
             src="/full-screen.jpg"
             className=" cursor-pointer"
-            onClick={toggleFullScreen}
+            onClick={openFullScreen}
           />
           <img
             src="/cross.jpg"
@@ -53,17 +61,15 @@ const Windows95App: FC<Windows95AppProps> = ({ title, icon, children }) => {
           />
         </div>
       </div>
-      <div className="bg-[#bfbfc0] text-[#0b0b0b] h-[46px] px-2 py-1">
-        <div className="flex items-center text-[26px] space-x-2">
-          <div className="px-2   cursor-pointer hover:bg-gray-400">
-            <u>H</u>elp
-          </div>
-          <div className="px-2   cursor-pointer hover:bg-gray-400">
-            <u>V</u>iew
-          </div>
+      <div className="flex items-start text-[26px] bg-[#bfbfc0] text-[#0b0b0b] h-[46px] border-b-2 border-[#8E8E8E] ">
+        <div className="px-2 h-full  cursor-pointer hover:bg-gray-400">
+          <u>H</u>elp
+        </div>
+        <div className="px-2  h-full  cursor-pointer hover:bg-gray-400">
+          <u>V</u>iew
         </div>
       </div>
-      <div className="flex-grow bg-white p-4">{children}</div>
+      <div className="flex-grow bg-white">{children}</div>
     </article>
   );
 };

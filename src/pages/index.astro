@@ -4,14 +4,24 @@ import Layout from "../layouts/Layout.astro";
 import { Image, Picture } from "@astrojs/image/components";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout>
   <main class="container">
-    <nav class="flex flex-row p-8">
-      <h1>
-        If excellence is a diamond, its facets are technologies, whose
-        intersections produce tips, that carve solutions into our black glass.
-      </h1>
-      <Image src="/dvd.png" height={328} alt="email" width={594} />
+    <nav class="flex lg:flex-row flex-col p-8">
+      <div>
+        <h1 class="text-5xl">
+          If excellence is a diamond, its facets are technologies, whose
+          intersections produce tips, that carve solutions into our black glass.
+        </h1>
+        <nav
+          class="flex my-4 flex-col items-start gap-2 text-xl text-purple-700"
+        >
+          <a href="about">about</a>
+        </nav>
+      </div>
+
+      <a class="min-w-[50%]" id="mail" href="mailto:threegoeseasy@gmail.com">
+        <Image src="/dvd.png" height={328} alt="email" width={594} /></a
+      >
     </nav>
 
     <Windows95App client:load icon="/package-box.svg" title="TSCA">
@@ -24,9 +34,19 @@ import { Image, Picture } from "@astrojs/image/components";
   main {
     margin: auto;
     padding: 1.5rem;
+    min-height: 200vh;
   }
+
+  #mail {
+    cursor: url(/mail.png), pointer;
+  }
+
   h1 {
-    font-size: 3rem;
     margin: 0;
+  }
+  a {
+    transition: text-shadow 0.5s ease;
+  }
+  a:hover {
   }
 </style>
