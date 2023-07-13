@@ -1,5 +1,6 @@
 {
   "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.taxonomy.frontMatterType": "JSON",
   "frontMatter.taxonomy.contentTypes": [
     {
       "name": "default",
@@ -55,7 +56,7 @@
   "frontMatter.content.pageFolders": [
     {
       "title": "content",
-      "path": "[[workspace]]/content"
+      "path": "[[workspace]]/src/content"
     }
   ]
 }
