@@ -2,6 +2,12 @@
 import Windows95App from "../components/Windows95app";
 import Layout from "../layouts/Layout.astro";
 import { Image, Picture } from "@astrojs/image/components";
+
+const backendUrl = import.meta.env.SECRET_BACKEND;
+const imgFolder = "uploads/";
+
+const response = await fetch(backendUrl + "getAllRecords");
+const data = await response.json();
 ---
 
 <Layout>
@@ -19,14 +25,30 @@ import { Image, Picture } from "@astrojs/image/components";
         </nav> -->
       </div>
 
-      <a class="min-w-[50%] py-4 dark:opacity-40" id="mail" href="mailto:threegoeseasy@gmail.com">
+      <a
+        class="min-w-[50%] py-4 dark:opacity-40"
+        id="mail"
+        href="mailto:threegoeseasy@gmail.com"
+      >
         <Image src="/dvd.png" height={328} alt="email" width={594} /></a
       >
     </nav>
 
-    <Windows95App client:load icon="/package-box.svg" title="TSCA">
-      <iframe title="TSCA" allowfullscreen src="https://tsca.online/"></iframe>
-    </Windows95App>
+    {
+      data.map((rec) => {
+        return (
+          <Windows95App
+            client:load
+            icon={backendUrl + imgFolder + rec.image}
+            title={rec.title}
+            className="mb-16"
+            description={rec.description}
+          >
+            <iframe title={rec.title} allowfullscreen src={rec.link} />
+          </Windows95App>
+        );
+      })
+    }
   </main>
 </Layout>
 
