@@ -33,3 +33,5 @@ jobs:
         run: echo -e "Host vps\n\tUser c62008\n\tHostname 91.201.52.213\n\tIdentityFile ~/.ssh/github-action\n\tStrictHostKeyChecking No" >> ~/.ssh/config
       - name: Send application files
         run: rsync -re ssh ./dist/ vps:/home/c62008/${{secrets.APP_NAME}}/www
+      - name: Reload website
+        run: ssh vps "cd /home/c62008/${{secrets.APP_NAME}} && touch reload"
