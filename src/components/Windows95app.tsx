@@ -73,7 +73,7 @@ const Windows95App: FC<Windows95AppProps> = ({
           boxShadow: "0px 0px 0 2px #f0f0f0",
           overflow: "auto",
           // resize: "horizontal",
-          width,
+          width: isFullScreen ? undefined : width,
         }}
         className={classNames(
           "flex flex-col border-2 border-[#c3c3c3]",
