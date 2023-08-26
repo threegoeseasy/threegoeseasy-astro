@@ -15,6 +15,12 @@ jobs:
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependecies
         run: npm ci
+      - name: "Create env file"
+        run: |
+          touch .env
+          echo SECRET_BACKEND="http://${{secrets.CMS_NAME}}.${{secrets.APP_NAME}}/" >> .env
+          echo SECRET_TG=https://t.me/${{secrets.TG}} >> .env
+          cat .env
       - name: Make Astro build
         run: npm run build
       - name: Make temp ssh folder on github machine
