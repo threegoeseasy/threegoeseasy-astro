@@ -1,0 +1,29 @@
+name: Deploy Astro build
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SSH_KEY: ${{secrets.SSH_KEY}}
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependecies
+        run: npm ci
+      - name: Make Astro build
+        run: npm run build
+      - name: Make temp ssh folder on github machine
+        run: mkdir ~/.ssh
+      - name: Add ssh key to machine
+        run: echo "$SSH_KEY" >> ~/.ssh/github-action
+      - name: Give permissions
+        run: chmod 400 ~/.ssh/github-action
+      - name: Add ssh config
+        run: echo -e "Host vps\n\tUser c62008\n\tHostname 91.201.52.213\n\tIdentityFile ~/.ssh/github-action\n\tStrictHostKeyChecking No" >> ~/.ssh/config
+      - name: Send application files
+        run: rsync -re ssh ./dist/ vps:/home/c62008/${{secrets.APP_NAME}}/www
