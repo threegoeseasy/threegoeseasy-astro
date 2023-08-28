@@ -34,21 +34,32 @@ const data = await response.json();
       >
     </nav>
 
-    {
-      data.map((rec) => {
-        return (
-          <Windows95App
-            client:load
-            icon={backendUrl + imgFolder + rec.image}
-            title={rec.title}
-            className="mb-16"
-            description={rec.description}
-          >
-            <iframe title={rec.title} allowfullscreen src={rec.link} />
-          </Windows95App>
-        );
-      })
-    }
+    <h2 class="py-4 text-3xl">
+      view <a
+        class="text-blue-600 underline"
+        target="_blank"
+        href="https://drive.google.com/file/d/12mg8Ox0Usvhp8m5h5mmFx3S6m6nyB1mv/view?usp=sharing"
+        >CV.pdf</a
+      >
+    </h2>
+    <div class="flex flex-col">
+      {
+        data.map((rec) => {
+          return (
+            <Windows95App
+              key={rec.title}
+              client:load
+              icon={backendUrl + imgFolder + rec.image}
+              title={rec.title}
+              className="mb-16"
+              description={rec.description}
+            >
+              <iframe title={rec.title} allowfullscreen src={rec.link} />
+            </Windows95App>
+          );
+        })
+      }
+    </div>
   </main>
 </Layout>
 
