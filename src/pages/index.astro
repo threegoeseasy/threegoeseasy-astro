@@ -47,8 +47,7 @@ const data = await response.json();
         data.map((rec) => {
           return (
             <Windows95App
-              key={rec.title}
-              client:load
+              client:idle
               icon={backendUrl + imgFolder + rec.image}
               title={rec.title}
               className="mb-16"

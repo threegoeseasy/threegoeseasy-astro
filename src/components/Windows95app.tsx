@@ -1,5 +1,5 @@
 import { useCallback, useState } from "preact/hooks";
-import { FC } from "preact/compat";
+import { FC, memo } from "preact/compat";
 import classNames from "../utils/classNames";
 import Windows95Help from "./Windows95help";
 
