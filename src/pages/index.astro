@@ -2,12 +2,6 @@
 import Windows95App from "../components/Windows95app";
 import Layout from "../layouts/Layout.astro";
 import { Image, Picture } from "@astrojs/image/components";
-
-const backendUrl = import.meta.env.SECRET_BACKEND;
-const imgFolder = "uploads/";
-
-const response = await fetch(backendUrl + "getAllRecords");
-const data = await response.json();
 ---
 
 <Layout>
@@ -42,23 +36,15 @@ const data = await response.json();
         >CV.pdf</a
       >
     </h2>
-    <div class="flex flex-col">
-      {
-        data.map((rec) => {
-          return (
-            <Windows95App
-              client:idle
-              icon={backendUrl + imgFolder + rec.image}
-              title={rec.title}
-              className="mb-16"
-              description={rec.description}
-            >
-              <iframe title={rec.title} allowfullscreen src={rec.link} />
-            </Windows95App>
-          );
-        })
-      }
-    </div>
+
+    <p class="py-4 text-3xl">
+      visit my <a
+        class="text-blue-600 underline"
+        target="_blank"
+        href="https://t.me/webrefs">telegram channel</a
+      >, full blog and gallery will arrive soon, website works will be available
+      on company page
+    </p>
   </main>
 </Layout>
 
