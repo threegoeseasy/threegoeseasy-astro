@@ -1,7 +1,6 @@
 ---
-
 import Layout from "../layouts/Layout.astro";
-import { Image,  } from "@astrojs/image/components";
+import { Image } from "@astrojs/image/components";
 ---
 
 <Layout>
@@ -42,29 +41,34 @@ import { Image,  } from "@astrojs/image/components";
         class="text-blue-600 underline"
         target="_blank"
         href="https://t.me/webrefs">telegram channel</a
-      >, <a class="text-blue-600 underline"
-    target="_blank" href="https:/qualityvoid.ru"> Quality VoID <a/> company page
+      >, <a
+        class="text-blue-600 underline"
+        target="_blank"
+        href="https:/qualityvoid.ru"
+      >
+        Quality VoID </a> company page
+      </a>
     </p>
   </main>
+
+  <style>
+    main {
+      margin: auto;
+      padding: 1.5rem;
+      min-height: 200vh;
+    }
+
+    #mail {
+      cursor: url(/mail.png), pointer;
+    }
+
+    h1 {
+      margin: 0;
+    }
+    a {
+      transition: text-shadow 0.5s ease;
+    }
+    a:hover {
+    }
+  </style>
 </Layout>
-
-<style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    min-height: 200vh;
-  }
-
-  #mail {
-    cursor: url(/mail.png), pointer;
-  }
-
-  h1 {
-    margin: 0;
-  }
-  a {
-    transition: text-shadow 0.5s ease;
-  }
-  a:hover {
-  }
-</style>
