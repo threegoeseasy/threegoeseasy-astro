@@ -1,0 +1,24 @@
+---
+import formatDate from "../utils/date";
+
+const { post } = Astro.props;
+---
+
+<div
+  class="rounded-lg shadow-2xl bg-orange-100 dark:bg-gray-900 px-4 py-6 my-4 transition duration-300 hover:shadow-lg"
+>
+  <a href={"/blog/" + post.slug}
+    ><span
+      class="text-lg text-center inset-x-1 inset-y-0 text-shadow-lg font-bold py-2 px-4"
+    >
+      {formatDate(post.created_at)}
+    </span>
+    <h1 class="text-2xl text-yellow-400 p-4">{post.title}</h1>
+  </a>
+
+  <p>{post.preview}</p>
+</div><style>
+  p {
+    text-indent: 19px;
+  }
+</style>
