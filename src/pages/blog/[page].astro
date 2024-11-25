@@ -29,10 +29,8 @@ export async function getStaticPaths() {
 }
 
 let rec;
-console.log(Astro.params.page);
 
 const url = backendUrl + `getPostBySlug/${Astro.params.page}`;
-console.log(url);
 
 const response = await fetch(url);
 if (!response.ok) {
@@ -50,20 +48,4 @@ rec = await response.json();
       set:html={blogStyle + rec?.content}
     />
   </main>
-
-  <aside class="flex lg:flex-row flex-col p-8">
-    <p class="py-4 text-3sm">
-      visit my <a
-        class="text-blue-600 underline"
-        target="_blank"
-        href="https://t.me/webrefs">telegram channel</a
-      >, <a
-        class="text-blue-600 underline"
-        target="_blank"
-        href="https://qualityvoid.ru"
-      >
-        Quality VOID
-      </a> company page
-    </p>
-  </aside>
 </Layout>

@@ -21,13 +21,13 @@ export const blogStyle = `<style>
   }
 
   article h2 {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #777;
     font-size: 1.5em;
     margin-top: 1.5em;
     margin-bottom: 0.5em;
-    color: #777;
   }
+
 
   article p {
     margin-bottom: 1em;
@@ -91,3 +91,128 @@ export const blogStyle = `<style>
     display: inline;
   }
 </style>`;
+
+export function transitionTexts(text1, text2, totalSteps, callback) {
+  const maxLength = Math.max(text1.length, text2.length);
+  const paddedText1 = text1.padEnd(maxLength, " ");
+  const paddedText2 = text2.padEnd(maxLength, " ");
+
+  let currentMask = paddedText1.split("");
+  const finalMask = paddedText2.split("");
+
+  function randomAsciiChar() {
+    const asciiStart = 33; // Printable ASCII starts at '!'
+    const asciiEnd = 126; // Printable ASCII ends at '~'
+    return String.fromCharCode(
+      Math.floor(Math.random() * (asciiEnd - asciiStart + 1)) + asciiStart
+    );
+  }
+
+  let stepCount = 0;
+  const interval = setInterval(() => {
+    const progress = stepCount / totalSteps; // Progress ratio (0 to 1)
+
+    // Gradually reduce randomness and increase correctness
+    const randomChance = Math.max(0.2, 1 - progress); // Starts high, decreases with progress
+    const correctInsertionChance = Math.min(0.8, progress); // Starts low, increases with progress
+
+    for (let i = 0; i < currentMask.length; i++) {
+      if (currentMask[i] !== finalMask[i]) {
+        if (Math.random() < randomChance) {
+          currentMask[i] = randomAsciiChar(); // Random character
+        } else if (Math.random() < correctInsertionChance) {
+          currentMask[i] = finalMask[i]; // Correct character
+        }
+      }
+    }
+
+    stepCount++;
+    callback(currentMask.join(""));
+
+    // End when we match the target or steps are exhausted
+    if (
+      currentMask.join("") === finalMask.join("") ||
+      stepCount >= totalSteps
+    ) {
+      clearInterval(interval);
+
+      callback(finalMask.join("")); // Ensure the final state
+    }
+  }, 100); // Adjust for smoother/faster transitions
+}
+
+//Updated transitionTexts with Green Variations
+function transitionTextsColor(text1, text2, totalSteps, callback) {
+  const maxLength = Math.max(text1.length, text2.length);
+  const paddedText1 = text1.padEnd(maxLength, " ");
+  const paddedText2 = text2.padEnd(maxLength, " ");
+
+  let currentMask = paddedText1.split("");
+  const finalMask = paddedText2.split("");
+
+  // Function to generate a random variation of green
+  function getRandomGreenColor() {
+    const red = 0; // Keep red low
+    const blue = 0; // Keep blue low
+    const green = Math.floor(Math.random() * 256); // Random green value (0 to 255)
+    return `rgb(${red}, ${green}, ${blue})`; // RGB with varying green
+  }
+
+  function randomAsciiChar() {
+    const asciiStart = 33; // Printable ASCII starts at '!'
+    const asciiEnd = 126; // Printable ASCII ends at '~'
+    return String.fromCharCode(
+      Math.floor(Math.random() * (asciiEnd - asciiStart + 1)) + asciiStart
+    );
+  }
+
+  let stepCount = 0;
+  const interval = setInterval(() => {
+    const progress = stepCount / totalSteps; // Progress ratio (0 to 1)
+
+    // Gradually reduce randomness and increase correctness
+    const randomChance = Math.max(0.2, 1 - progress); // Starts high, decreases with progress
+    const correctInsertionChance = Math.min(0.8, progress); // Starts low, increases with progress
+
+    for (let i = 0; i < currentMask.length; i++) {
+      if (currentMask[i] !== finalMask[i]) {
+        if (Math.random() < randomChance) {
+          currentMask[i] = randomAsciiChar(); // Random character
+        } else if (Math.random() < correctInsertionChance) {
+          currentMask[i] = finalMask[i]; // Correct character
+        }
+      }
+    }
+
+    // Apply a random green color and small opacity to the characters
+    const styledText = currentMask
+      .map((char, idx) => {
+        const isCorrect = char === finalMask[idx];
+
+        // Slight opacity for incorrect characters, full opacity for correct ones
+        const randomOpacity = isCorrect ? 1 : Math.random() * 0.5 + 0.3; // Opacity between 0.3 and 1
+        const randomGreenColor = getRandomGreenColor(); // Random shade of green
+        const opacityStyle = `opacity: ${randomOpacity}; color: ${randomGreenColor};`;
+
+        return `<span style="${opacityStyle}">${char}</span>`;
+      })
+      .join("");
+
+    callback(styledText); // Pass the styled text to the callback
+
+    stepCount++;
+    // End when we match the target or steps are exhausted
+    if (
+      currentMask.join("") === finalMask.join("") ||
+      stepCount >= totalSteps
+    ) {
+      clearInterval(interval);
+
+      // Final state with full opacity and no color change
+      const finalStyledText = finalMask
+        .map((char) => `<span>${char}</span>`)
+        .join("");
+      callback(finalStyledText); // Final state without opacity change
+    }
+  }, 100); // Adjust for smoother/faster transitions
+}

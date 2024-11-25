@@ -1,16 +1,24 @@
 ---
 import ThemeToggle from "../components/ThemeToggle";
+import Footer from "./Footer.astro";
+import { log } from "astro/dist/core/logger/core";
+
+const scriptString = Astro.props.args.script[0];
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>threegoeseasy - ⚛ 🎀 𝒸𝒶𝓇𝒹 𝓌𝑒𝒷 𝓅𝒶𝑔𝑒 🎀 ⚛</title>
     <meta charset="UTF-8" />
     <meta name="description" content="Web magician, creative developer" />
     <meta name="viewport" content="width=device-width" />
+    <script is:inline src={scriptString}>
+      gggg;
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>threegoeseasy - ⚛ 🎀 𝒸𝒶𝓇𝒹 𝓌𝑒𝒷 𝓅𝒶𝑔𝑒 🎀 ⚛</title>
   </head>
+
   <body
     class="container mx-auto bg-orange-400 dark:bg-indigo-950 text-gray-900"
   >
@@ -43,62 +51,71 @@ import ThemeToggle from "../components/ThemeToggle";
     </div>
 
     <slot />
+    <Footer />
+
+    <style is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+
+      @font-face {
+        font-family: "w95";
+        src: url("/w95fa.woff2") format("woff2");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      a-scene {
+        pointer-events: none;
+        position: absolute;
+      }
+
+      iframe {
+        /* aspect-ratio: 4/3; */
+        width: 100%;
+        height: 700px;
+      }
+
+      html {
+        font-family: "w95", system-ui, monospace;
+      }
+      body {
+        font-family: "w95", system-ui, monospace;
+        min-height: 50vh;
+        width: 100vw;
+        cursor: url(/mouse.png), default;
+        @apply dark:text-orange-400 !important;
+      }
+
+      a {
+        cursor: url(/pointer.png), pointer;
+      }
+      button {
+        cursor: url(/pointer.png), pointer !important;
+      }
+    </style>
+
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+
+      if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+      window.localStorage.setItem("theme", theme);
+    </script>
   </body>
 </html>
-<style is:global>
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-
-  @font-face {
-    font-family: "w95";
-    src: url("/w95fa.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  iframe {
-    /* aspect-ratio: 4/3; */
-    width: 100%;
-    height: 700px;
-  }
-
-  html {
-    font-family: "w95", system-ui, monospace;
-  }
-  body {
-    font-family: "w95", system-ui, monospace;
-    min-height: 100vh;
-    height: 100%;
-    width: 100vw;
-    cursor: url(/mouse.png), default;
-    @apply dark:text-orange-400 !important;
-  }
-
-  a {
-    cursor: url(/pointer.png), pointer;
-  }
-  button {
-    cursor: url(/pointer.png), pointer !important;
-  }
-</style>
-
-<script is:inline>
-  const theme = (() => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    }
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
-  })();
-
-  if (theme === "light") {
-    document.documentElement.classList.remove("dark");
-  } else {
-    document.documentElement.classList.add("dark");
-  }
-  window.localStorage.setItem("theme", theme);
-</script>

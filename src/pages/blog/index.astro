@@ -17,21 +17,6 @@ const data = await response.json();
       })
     } -->
     {data.map((rec, index) => <BlogPost post={rec} />)}
-    <aside class="flex lg:flex-row flex-col p-8">
-      <p class="py-4 text-3sm">
-        visit my <a
-          class="text-blue-600 underline"
-          target="_blank"
-          href="https://t.me/webrefs">telegram channel</a
-        >, <a
-          class="text-blue-600 underline"
-          target="_blank"
-          href="https://qualityvoid.ru"
-        >
-          Quality VOID
-        </a> company page
-      </p>
-    </aside>
   </main>
 </Layout>
 
@@ -44,10 +29,6 @@ const data = await response.json();
 
   h1 {
     margin: 0;
-  }
-
-  main .article h1 {
-    font-size: 33px !important;
   }
 
   a {

@@ -1,70 +1,80 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "@astrojs/image/components";
+
+const src = [""];
 ---
 
-<Layout>
+<Layout args={{ script: src }}>
   <main>
     <nav class="flex lg:flex-row flex-col p-8">
-      <div>
-        <h1 class="text-5xl pb-4">
-          If excellence is a diamond, its facets are technologies, whose
-          intersections produce tips, that carve solutions into our black glass.
-        </h1>
-        <!-- <nav
-          class="flex my-4 flex-col items-start gap-2 text-xl text-purple-700"
-        >
-          <a href="about">about</a>
-        </nav> -->
+      <div
+        id="quote_wrapper"
+        class="max-w-[45%] z-10 flex align-middle h-[400px]"
+      >
+        <h1 id="quote" class="text-4xl my-auto pb-4"></h1>
       </div>
 
       <a
-        class="min-w-[50%] py-4 dark:opacity-40"
+        class="min-w-[50%] flex align-middle justify-center py-4 dark:opacity-40"
         id="mail"
         href="mailto:threegoeseasy@gmail.com"
       >
-        <Image src="/dvd.png" height={328} alt="email" width={594} /></a
+        <Image
+          src="/dvd.png"
+          height={328}
+          alt="email"
+          class="max-h-72 w-auto"
+          width={594}
+        /></a
       >
     </nav>
-
-    <h2 class="py-4 text-3xl">
-      view <a
-        class="text-blue-600 underline"
-        target="_blank"
-        href="https://drive.google.com/file/d/12mg8Ox0Usvhp8m5h5mmFx3S6m6nyB1mv/view?usp=sharing"
-        >CV.pdf</a
-      >
-    </h2>
-
-    <p class="py-4 text-3xl">
-      visit my <a
-        class="text-blue-600 underline"
-        target="_blank"
-        href="https://t.me/webrefs">telegram channel</a
-      >, <a
-        class="text-blue-600 underline"
-        target="_blank"
-        href="https://qualityvoid.ru"
-      >
-        Quality VoID
-      </a> company page
-    </p>
   </main>
+
+  <script>
+    import { transitionTexts } from "../utils/styles";
+
+    const quotes = [
+      "Если совершенство - это бриллиант, то его грани - это технологии, пересечения которых порождают наконечники, вырезающие решения в нашем черном стекле.",
+      "Wenn Exzellenz ein Diamant ist, dann sind seine Facetten Technologien, deren Überschneidungen Spitzen ergeben, die Lösungen in unser schwarzes Glas ritzen.",
+      "If excellence is a diamond, its facets are technologies, whose intersections produce robust points, that carve solutions into our black glass.",
+      "如果說卓越是一顆鑽石，那麼它的切面就是技術，這些技術的交叉點會產生強大的能量，在我們的黑色玻璃上雕刻出解決方案。",
+      "Om excellens är en diamant, så är dess fasetter teknikerna, vars skärningspunkter ger robusta punkter, som ristar in lösningar i vårt svarta glas.",
+      "إذا كان التميّز ألماسة، فإن جوانبه هي التقنيات، التي تُنتج تقاطعاتها نقاطًا قوية، تنحت الحلول في زجاجنا الأسود.\n",
+      "Als uitmuntendheid een diamant is, zijn de facetten ervan de technieken, waarvan de snijpunten robuuste punten opleveren, die oplossingen snijden in ons zwarte glas.",
+      "Se a excelência é um diamante, as suas facetas são as técnicas, cujas intersecções produzem pontos robustos, que esculpem soluções no nosso vidro negro.",
+    ];
+
+    const h1quote = document.getElementById("quote");
+    h1quote.innerText = quotes[1];
+    const quoteAmount = quotes.length;
+    let i = 0;
+    function updateQuote() {
+      transitionTexts(quotes[i], quotes[i + 1], 22, (output) => {
+        h1quote.innerText = output;
+      });
+
+      i++;
+      if (i === quoteAmount - 1) {
+        i = 0;
+      }
+      const randomInterval = Math.random() * 4000 + 6000;
+      setTimeout(updateQuote, randomInterval);
+    }
+
+    updateQuote();
+  </script>
 
   <style>
     main {
       margin: auto;
       padding: 1.5rem;
-      min-height: 200vh;
     }
 
     #mail {
       cursor: url(/mail.png), pointer;
     }
 
-    h1 {
-      margin: 0;
-    }
     a {
       transition: text-shadow 0.5s ease;
     }

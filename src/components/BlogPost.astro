@@ -9,11 +9,11 @@ const { post } = Astro.props;
 >
   <a href={"/blog/" + post.slug}
     ><span
-      class="text-lg text-center inset-x-1 inset-y-0 text-shadow-lg font-bold py-2 px-4"
+      class="dark:text-yellow-400 text-lg text-center inset-x-1 inset-y-0 text-shadow-lg font-bold py-2 px-4"
     >
       {formatDate(post.created_at)}
     </span>
-    <h1 class="text-2xl text-yellow-400 p-4">{post.title}</h1>
+    <h1 class="text-2xl text-red-700 dark:text-white p-4">{post.title}</h1>
   </a>
 
   <p>{post.preview}</p>
