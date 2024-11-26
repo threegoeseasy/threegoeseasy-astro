@@ -2,21 +2,21 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "@astrojs/image/components";
 
-const src = [""];
+const src = ["https://aframe.io/releases/1.2.0/aframe.min.js"];
 ---
 
 <Layout args={{ script: src }}>
   <main>
-    <nav class="flex lg:flex-row flex-col p-8">
-      <div
-        id="quote_wrapper"
-        class="max-w-[45%] z-10 flex align-middle h-[400px]"
-      >
-        <h1 id="quote" class="text-4xl my-auto pb-4"></h1>
+    <aside class="flex flex-col p-8">
+      <div class="h-[30vh] lg:h-[25vh] xl:h-[20vh] overflow-hidden">
+        <h1
+          id="quote"
+          class="text-3xl lg:text-4xl xl:text-5xl text-justify text-balance antialiased"
+        >
+        </h1>
       </div>
-
       <a
-        class="min-w-[50%] flex align-middle justify-center py-4 dark:opacity-40"
+        class="min-w-[50%] mt-8 flex align-middle justify-center py-4 dark:opacity-40"
         id="mail"
         href="mailto:threegoeseasy@gmail.com"
       >
@@ -24,11 +24,11 @@ const src = [""];
           src="/dvd.png"
           height={328}
           alt="email"
-          class="max-h-72 w-auto"
+          class="antialiased drop-shadow-xl"
           width={594}
         /></a
       >
-    </nav>
+    </aside>
   </main>
 
   <script>
@@ -46,19 +46,24 @@ const src = [""];
     ];
 
     const h1quote = document.getElementById("quote");
-    h1quote.innerText = quotes[1];
     const quoteAmount = quotes.length;
     let i = 0;
+
+    // const mail = document.getElementById("mail");
+    // const quoteHeight = h1quote.offsetHeight;
+    // mail.style.height = quoteHeight;
+    h1quote.innerText = quotes[0];
+
     function updateQuote() {
-      transitionTexts(quotes[i], quotes[i + 1], 22, (output) => {
+      const nextIndex = (i + 1) % quoteAmount; // Compute the next index
+      transitionTexts(quotes[i], quotes[nextIndex], 27, (output) => {
         h1quote.innerText = output;
       });
 
-      i++;
-      if (i === quoteAmount - 1) {
-        i = 0;
-      }
-      const randomInterval = Math.random() * 4000 + 6000;
+      i = nextIndex; // Update `i` after transition
+      console.log(i, quotes[i]);
+
+      const randomInterval = Math.random() * 4000 + 7000;
       setTimeout(updateQuote, randomInterval);
     }
 

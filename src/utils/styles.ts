@@ -13,7 +13,7 @@ export const blogStyle = `<style>
   }
 
   article h1 {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
 
     font-size: 2em;
     margin-bottom: 0.5em;
@@ -21,7 +21,7 @@ export const blogStyle = `<style>
   }
 
   article h2 {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
     color: #777;
     font-size: 1.5em;
     margin-top: 1.5em;
@@ -67,7 +67,7 @@ export const blogStyle = `<style>
     color: #c7254e;
     padding: 2px 4px;
     border-radius: 3px;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "Courier New", Courier, monospace !important;
   }
 
   /* Quote Styles */

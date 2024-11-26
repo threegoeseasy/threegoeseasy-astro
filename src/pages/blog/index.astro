@@ -10,7 +10,7 @@ const data = await response.json();
 ---
 
 <Layout>
-  <main>
+  <main id="posts">
     <!-- {
       data.map((rec) => {
         return <pre>{JSON.stringify(rec, null, 4)}</pre>;
@@ -24,7 +24,8 @@ const data = await response.json();
   main {
     margin: auto;
     padding: 1.5rem;
-    min-height: 200vh;
+    min-height: 100vh;
+    font-family: helvetica, monospace;
   }
 
   h1 {
