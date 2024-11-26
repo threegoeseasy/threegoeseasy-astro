@@ -1,13 +1,12 @@
 ---
 import classNames from "../utils/classNames";
-const { sticky } = Astro.props;
-console.log(sticky);
+const { sticky = false } = Astro.props;
 ---
 
 <footer
   class={classNames(
-    "container  mx-auto text-center my-4",
-    sticky ? "absolute scale-150 bottom-4" : "drop-shadow-xl"
+    "container s mx-auto text-center my-4",
+    sticky ? "absolute text-3xl  bottom-4" : "drop-shadow-xl"
   )}
 >
   also welcome to my&nbsp;<a

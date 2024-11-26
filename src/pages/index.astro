@@ -62,7 +62,6 @@ const src = ["https://aframe.io/releases/1.2.0/aframe.min.js"];
       });
 
       i = nextIndex; // Update `i` after transition
-      console.log(i, quotes[i]);
 
       const randomInterval = Math.random() * 4000 + 7000;
       setTimeout(updateQuote, randomInterval);
@@ -75,6 +74,7 @@ const src = ["https://aframe.io/releases/1.2.0/aframe.min.js"];
     main {
       margin: auto;
       padding: 1.5rem;
+      width: 100% !important;
     }
 
     #mail {
