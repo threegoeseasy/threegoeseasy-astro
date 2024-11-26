@@ -19,7 +19,7 @@ import Navbar from "../components/Navbar.astro";
   >
     <Navbar />
     <slot />
-    <Footer />
+    <Footer sticky={Astro.props.args.footer} />
 
     <style is:global>
       @tailwind base;
@@ -46,7 +46,7 @@ import Navbar from "../components/Navbar.astro";
       }
       body {
         font-family: "w95", "Courier New", system-ui, monospace;
-
+        overflow-x: hidden;
         min-height: 50vh;
         max-height: max-content;
         width: 100vw;

@@ -5,18 +5,19 @@ import { Image } from "@astrojs/image/components";
 const src = ["https://aframe.io/releases/1.2.0/aframe.min.js"];
 ---
 
-<Layout args={{ script: src }}>
+<Layout args={{ script: src, footer: "sticky" }}>
   <main>
-    <aside class="flex flex-col p-8">
-      <div class="h-[30vh] lg:h-[25vh] xl:h-[20vh] overflow-hidden">
+    <aside class="flex flex-col p-2">
+      <div class="h-fit lg:h-[25vh] xl:h-[20vh] overflow-hidden">
         <h1
           id="quote"
           class="text-3xl lg:text-4xl xl:text-5xl text-justify text-balance antialiased"
         >
         </h1>
       </div>
+      <div class="flex flex-1"></div>
       <a
-        class="min-w-[50%] mt-8 flex align-middle justify-center py-4 dark:opacity-40"
+        class="mt-8 left-right absolute bottom-2 left-2 py-4"
         id="mail"
         href="mailto:threegoeseasy@gmail.com"
       >
@@ -78,6 +79,51 @@ const src = ["https://aframe.io/releases/1.2.0/aframe.min.js"];
 
     #mail {
       cursor: url(/mail.png), pointer;
+      position: absolute; /* Ensure it can move within its container */
+      bottom: 2%;
+      left: 2%;
+      animation: left-right 15s infinite alternate ease-in-out; /* Customize duration, direction, etc. */
+      height: 20px;
+      aspect-ratio: 594 / 328;
+    }
+
+    @keyframes left-right {
+      0% {
+        left: 12%;
+        bottom: 10%;
+        scale: 2;
+        filter: drop-shadow(
+          2px 4px 6px rgb(255, 169, 0)
+        ); /* Subtle orange shadow */
+      }
+      25% {
+        left: 24%;
+        bottom: 13%;
+        filter: drop-shadow(
+          3px 5px 80px rgba(255, 178, 178, 0.71)
+        ); /* Slightly stronger */
+      }
+      50% {
+        left: 48%;
+        bottom: 16%;
+        scale: 200%;
+
+        filter: drop-shadow(1px 2px 40px rgba(178, 237, 241, 0.81)) blur(77px); /* Lighter shadow */
+      }
+      75% {
+        left: 76%;
+        bottom: 10%;
+        filter: drop-shadow(
+          4px 6px 69px rgba(255, 178, 178, 0.71)
+        ); /* More pronounced */
+      }
+      100% {
+        left: 89%;
+        bottom: 12%;
+        filter: drop-shadow(
+          2px 4px 6px rgba(226, 153, 20, 1)
+        ); /* Reset to subtle */
+      }
     }
 
     a {
