@@ -1,49 +1,47 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "@astrojs/image/components";
 
 const src = ["https://aframe.io/releases/1.2.0/aframe.min.js"];
 ---
 
 <Layout args={{ script: src, footer: "sticky" }}>
-  <main>
-    <aside class="flex flex-col p-2">
-      <div class="h-fit lg:h-[25vh] xl:h-[20vh] overflow-hidden">
+  <main class="flex flex-col-reverse lg:flex-col overflow-hidden">
+
+      <div class="lg:h-[33vh] lg:w-2/3 self-center overflow-hidden">
         <h1
           id="quote"
-          class="text-3xl lg:text-4xl xl:text-5xl text-justify text-balance antialiased"
+          class="text-3xl lg:text-4xl xl:text-5xl text-justify text-balance antialiased "
         >
         </h1>
       </div>
-      <div class="flex flex-1"></div>
+
       <a
-        class="mt-8 left-right absolute bottom-2 left-2 py-4"
+        class="mb-16 flex items-center justify-center flex-1 w-full"
         id="mail"
         href="mailto:threegoeseasy@gmail.com"
       >
-        <Image
+        <img
           src="/dvd.png"
           height={328}
           alt="email"
           class="antialiased drop-shadow-xl"
-          width={594}
         /></a
       >
-    </aside>
+
   </main>
 
   <script>
     import { transitionTexts } from "../utils/styles";
 
     const quotes = [
-      "Если совершенство - это бриллиант, то его грани - это технологии, пересечения которых порождают наконечники, вырезающие решения в нашем черном стекле.",
-      "Wenn Exzellenz ein Diamant ist, dann sind seine Facetten Technologien, deren Überschneidungen Spitzen ergeben, die Lösungen in unser schwarzes Glas ritzen.",
-      "If excellence is a diamond, its facets are technologies, whose intersections produce robust points, that carve solutions into our black glass.",
-      "如果說卓越是一顆鑽石，那麼它的切面就是技術，這些技術的交叉點會產生強大的能量，在我們的黑色玻璃上雕刻出解決方案。",
-      "Om excellens är en diamant, så är dess fasetter teknikerna, vars skärningspunkter ger robusta punkter, som ristar in lösningar i vårt svarta glas.",
-      "إذا كان التميّز ألماسة، فإن جوانبه هي التقنيات، التي تُنتج تقاطعاتها نقاطًا قوية، تنحت الحلول في زجاجنا الأسود.\n",
-      "Als uitmuntendheid een diamant is, zijn de facetten ervan de technieken, waarvan de snijpunten robuuste punten opleveren, die oplossingen snijden in ons zwarte glas.",
-      "Se a excelência é um diamante, as suas facetas são as técnicas, cujas intersecções produzem pontos robustos, que esculpem soluções no nosso vidro negro.",
+        "Если совершенство — это бриллиант, то его грани — это технологии, пересечения которых высекают решения на черном стекле.",
+        "Wenn Exzellenz ein Diamant ist, dann sind seine Facetten Technologien, deren Überschneidungen Lösungen ins schwarze Glas ritzen.",
+        "If excellence is a diamond, its facets are technologies, whose intersections carve solutions into black glass.",
+        "如果说卓越是一颗钻石，那么它的切面就是技术，这些技术的交叉点在黑色玻璃上雕刻出解决方案。",
+        "Om excellens är en diamant, så är dess fasetter teknikerna, vars skärningspunkter ristar in lösningar i svart glas.",
+        "إذا كان التميّز ألماسة، فإن جوانبه هي التقنيات، التي تُنتج تقاطعاتها حلولًا تنحت في الزجاج الأسود.",
+        "Als uitmuntendheid een diamant is, zijn de facetten ervan de technieken, waarvan de snijpunten oplossingen snijden in zwart glas.",
+        "Se a excelência é um diamante, as suas facetas são as técnicas, cujas intersecções esculpem soluções no vidro negro."
     ];
 
     const h1quote = document.getElementById("quote");
@@ -78,52 +76,14 @@ const src = ["https://aframe.io/releases/1.2.0/aframe.min.js"];
     }
 
     #mail {
-      cursor: url(/mail.png), pointer;
-      position: absolute; /* Ensure it can move within its container */
-      bottom: 2%;
-      left: 2%;
-      animation: left-right 15s infinite alternate ease-in-out; /* Customize duration, direction, etc. */
-      height: 20px;
-      aspect-ratio: 594 / 328;
+
+
     }
 
-    @keyframes left-right {
-      0% {
-        left: 12%;
-        bottom: 10%;
-        scale: 2;
-        filter: drop-shadow(
-          2px 4px 6px rgb(255, 169, 0)
-        ); /* Subtle orange shadow */
-      }
-      25% {
-        left: 24%;
-        bottom: 13%;
-        filter: drop-shadow(
-          3px 5px 80px rgba(255, 178, 178, 0.71)
-        ); /* Slightly stronger */
-      }
-      50% {
-        left: 48%;
-        bottom: 16%;
-        scale: 200%;
-
-        filter: drop-shadow(1px 2px 40px rgba(178, 237, 241, 0.81)) blur(77px); /* Lighter shadow */
-      }
-      75% {
-        left: 76%;
-        bottom: 10%;
-        filter: drop-shadow(
-          4px 6px 69px rgba(255, 178, 178, 0.71)
-        ); /* More pronounced */
-      }
-      100% {
-        left: 89%;
-        bottom: 12%;
-        filter: drop-shadow(
-          2px 4px 6px rgba(226, 153, 20, 1)
-        ); /* Reset to subtle */
-      }
+    #mail img {
+        aspect-ratio: 594 / 328;
+        height: 200px;
+      cursor: url(/mail.png), pointer;
     }
 
     a {
